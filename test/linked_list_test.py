@@ -100,3 +100,124 @@ def test_add_to_front_one_list(capsys):
     expected = "3 -> 4 -> 5 -> 1 -> 2 -> NULL\n"
     output = capsys.readouterr().out
     assert output == expected
+
+def test_add_to_back_to_empty_list(capsys):
+    linked_list = Linked_List()
+    node_to_add = Linked_List_Node(1)
+    node_2 = Linked_List_Node(2)
+    node_to_add.next = node_2
+
+    linked_list.add_to_back(node_to_add)
+    linked_list.print()
+
+    expected = "1 -> 2 -> NULL\n"
+    output = capsys.readouterr().out
+    assert output == expected
+
+def test_add_to_back_one_element(capsys):
+    node_1 = Linked_List_Node(1)
+    node_2 = Linked_List_Node(2)
+    node_3 = Linked_List_Node(3)
+    linked_list = Linked_List(node_1)
+    linked_list.head.next = node_2
+
+    linked_list.add_to_back(node_3)
+    linked_list.print()
+
+    expected = "1 -> 2 -> 3 -> NULL\n"
+    output = capsys.readouterr().out
+    assert output == expected
+
+def test_add_to_back_one_list(capsys):
+    node_1 = Linked_List_Node(1)
+    node_2 = Linked_List_Node(2)
+    node_3 = Linked_List_Node(3)
+    node_4 = Linked_List_Node(4)
+    node_5 = Linked_List_Node(5)
+
+    linked_list = Linked_List(node_1)
+    linked_list.head.next = node_2
+    node_3.next = node_4
+    node_4.next = node_5
+
+    linked_list.add_to_back(node_3)
+    linked_list.print()
+
+    expected = "1 -> 2 -> 3 -> 4 -> 5 -> NULL\n"
+    output = capsys.readouterr().out
+    assert output == expected
+
+def test_remove_from_empty_list(capsys):
+    linked_list = Linked_List()
+    linked_list.remove(7)
+    linked_list.print()
+
+    expected = "NULL\n"
+    output = capsys.readouterr().out
+    assert output == expected
+
+def test_remove_from_one_element_list(capsys):
+    node_1 = Linked_List_Node(1)
+    linked_list = Linked_List(node_1)
+    linked_list.remove(1)
+    linked_list.print()
+
+    expected = "NULL\n"
+    output = capsys.readouterr().out
+    assert output == expected
+
+def test_remove_not_in_list(capsys):
+    node_1 = Linked_List_Node(1)
+    node_2 = Linked_List_Node(2)
+    node_3 = Linked_List_Node(3)
+    linked_list = Linked_List(node_1)
+    linked_list.head.next = node_2
+    node_2.next = node_3
+    linked_list.remove(7)
+    linked_list.print()
+
+    expected = "1 -> 2 -> 3 -> NULL\n"
+    output = capsys.readouterr().out
+    assert output == expected
+
+def test_remove_element_at_head(capsys):
+    node_1 = Linked_List_Node(1)
+    node_2 = Linked_List_Node(2)
+    node_3 = Linked_List_Node(3)
+    linked_list = Linked_List(node_1)
+    linked_list.head.next = node_2
+    node_2.next = node_3
+    linked_list.remove(1)
+    linked_list.print()
+
+    expected = "2 -> 3 -> NULL\n"
+    output = capsys.readouterr().out
+    assert output == expected
+
+def test_remove_element_at_middle(capsys):
+    node_1 = Linked_List_Node(1)
+    node_2 = Linked_List_Node(2)
+    node_3 = Linked_List_Node(3)
+    linked_list = Linked_List(node_1)
+    linked_list.head.next = node_2
+    node_2.next = node_3
+    linked_list.remove(2)
+    linked_list.print()
+
+    expected = "1 -> 3 -> NULL\n"
+    output = capsys.readouterr().out
+    assert output == expected
+
+def test_remove_element_at_tail(capsys):
+    node_1 = Linked_List_Node(1)
+    node_2 = Linked_List_Node(2)
+    node_3 = Linked_List_Node(3)
+    linked_list = Linked_List(node_1)
+    linked_list.head.next = node_2
+    node_2.next = node_3
+    linked_list.remove(3)
+    linked_list.print()
+
+    expected = "1 -> 2 -> NULL\n"
+    output = capsys.readouterr().out
+    assert output == expected

@@ -23,3 +23,30 @@ class Linked_List:
             temp = temp.next
         temp.next = self.head
         self.head = node_to_add
+
+    def add_to_back(self, node_to_add):
+        if self.head:
+            temp = self.head
+            while temp.next:
+                temp = temp.next
+            temp.next = node_to_add
+        else:
+            self.head = node_to_add
+
+    def remove(self, value_to_remove):
+        curr = self.head
+        prev = None
+
+        while curr:
+            if curr.value == value_to_remove:
+                if prev:
+                    prev.next = curr.next
+                    del curr
+                else:
+                    temp = curr
+                    curr = curr.next
+                    self.head = curr
+                    del temp
+                return
+            prev = curr
+            curr = curr.next
