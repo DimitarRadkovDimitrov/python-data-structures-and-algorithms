@@ -31,15 +31,6 @@ def test_peek_stack_with_elements():
     assert output == expected
     assert stack.stack[-1] == expected
 
-def test_push_empty_stack():
-    stack = Stack()
-    element = 230
-    stack.push(element)
-
-    expected = [230]
-    output = stack.stack
-    assert output == expected
-
 def test_is_empty():
     stack = Stack()
 
@@ -52,6 +43,15 @@ def test_is_empty_with_multiple_elements():
 
     expected = False
     output = stack.is_empty()
+    assert output == expected
+
+def test_push_empty_stack():
+    stack = Stack()
+    element = 230
+    stack.push(element)
+
+    expected = [230]
+    output = stack.stack
     assert output == expected
 
 def test_push_with_multiple_elements():
