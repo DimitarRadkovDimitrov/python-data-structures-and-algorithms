@@ -1,8 +1,5 @@
-from .linked_list_node import Linked_List_Node
-
 class Linked_List:
-    def __init__(self, value):
-        head = Linked_List_Node(value)
+    def __init__(self, head=None):
         self.head = head
 
     def print(self):
