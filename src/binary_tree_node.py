@@ -48,5 +48,32 @@ class Binary_Tree_Node:
         else:
             return True
 
-    def delete(self, value_to_delete):
-        pass
+    def delete(self, node, value_to_delete):
+        if node:
+            if value_to_delete < node.value:
+                node.left_child = self.delete(node.left_child, value_to_delete)
+            elif value_to_delete > node.value:
+                node.right_child = self.delete(node.right_child, value_to_delete)
+            else:
+                if node.left_child and node.right_child:
+                    temp = self.get_in_order_successor(node.right_child)
+                    node.value = temp.value
+                    node.right_child = self.delete(node.right_child, temp.value)
+                    return node
+                elif node.left_child and node.right_child is None:
+                    temp = node.left_child
+                    node = None
+                    return temp
+                elif node.right_child and node.left_child is None:
+                    temp = node.right_child
+                    node = None
+                    return temp
+                else:
+                    temp = None
+                    return temp
+        return node
+
+    def get_in_order_successor(self, node):
+        while node.left_child:
+            node = node.left_child
+        return node

@@ -160,22 +160,13 @@ def test_find_node_in_linked_list_tree():
     output = root_node.find(5)
     assert output == expected
 
-def test_delete_node_one_node_tree(capsys):
-    root_node = Binary_Tree_Node(1)
-    root_node.delete(1)
-    root_node.in_order_print(root_node)
-
-    expected = "None "
-    output = capsys.readouterr().out
-    assert output == expected
-
 def test_delete_leaf_node_in_full_tree(capsys):
     root_node = Binary_Tree_Node(5)
     root_node.insert(3)
     root_node.insert(7)
     root_node.insert(1)
     root_node.insert(4)
-    root_node.delete(1)
+    root_node.delete(root_node, 1)
     root_node.in_order_print(root_node)
 
     expected = "3 4 5 7 "
@@ -188,7 +179,7 @@ def test_delete_node_not_in_full_tree(capsys):
     root_node.insert(7)
     root_node.insert(1)
     root_node.insert(4)
-    root_node.delete(12)
+    root_node.delete(root_node, 12)
     root_node.in_order_print(root_node)
 
     expected = "1 3 4 5 7 "
@@ -200,7 +191,7 @@ def test_delete_node_with_one_left_child(capsys):
     root_node.insert(3)
     root_node.insert(7)
     root_node.insert(1)
-    root_node.delete(3)
+    root_node.delete(root_node, 3)
     root_node.in_order_print(root_node)
 
     expected = "1 5 7 "
@@ -213,9 +204,39 @@ def test_delete_node_with_one_right_child(capsys):
     root_node.insert(7)
     root_node.insert(1)
     root_node.insert(9)
-    root_node.delete(7)
+    root_node.delete(root_node, 7)
     root_node.in_order_print(root_node)
 
     expected = "1 3 5 9 "
+    output = capsys.readouterr().out
+    assert output == expected
+
+def test_delete_node_with_two_children(capsys):
+    root_node = Binary_Tree_Node(5)
+    root_node.insert(3)
+    root_node.insert(7)
+    root_node.insert(1)
+    root_node.insert(4)
+    root_node.delete(root_node, 3)
+    root_node.in_order_print(root_node)
+
+    expected = "1 4 5 7 "
+    output = capsys.readouterr().out
+    assert output == expected
+
+def test_delete_root_node_with_full_tree(capsys):
+    root_node = Binary_Tree_Node(5)
+    root_node.insert(3)
+    root_node.insert(7)
+    root_node.insert(1)
+    root_node.insert(4)
+    root_node.insert(3)
+    root_node.insert(6)
+    root_node.insert(12)
+    root_node.insert(10)
+    root_node.delete(root_node, 5)
+    root_node.in_order_print(root_node)
+
+    expected = "1 3 4 6 7 10 12 "
     output = capsys.readouterr().out
     assert output == expected
