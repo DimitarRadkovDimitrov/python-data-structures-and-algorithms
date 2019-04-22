@@ -1,4 +1,4 @@
-class Binary_Tree_Node:
+class BinaryTree:
     def __init__(self, value):
         self.value = value
         self.left_child = None
@@ -27,12 +27,12 @@ class Binary_Tree_Node:
             if self.left_child:
                 self.left_child.insert(value_to_insert)
             else:
-                self.left_child = Binary_Tree_Node(value_to_insert)
+                self.left_child = BinaryTree(value_to_insert)
         elif value_to_insert > self.value:
             if self.right_child:
                 self.right_child.insert(value_to_insert)
             else:
-                self.right_child = Binary_Tree_Node(value_to_insert)
+                self.right_child = BinaryTree(value_to_insert)
 
     def find(self, value_to_find):
         if value_to_find < self.value:
