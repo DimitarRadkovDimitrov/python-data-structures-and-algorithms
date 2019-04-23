@@ -105,6 +105,15 @@ def test_insert_same_word_twice():
     output = root_node.get_words(root_node)
     assert output == expected
 
+def test_insert_same_word_different_case():
+    root_node = Trie()
+    root_node.insert("dimitar")
+    root_node.insert("DIMITAR")
+
+    expected = ['dimitar', 'DIMITAR']
+    output = root_node.get_words(root_node)
+    assert output == expected
+
 def test_insert_multiple_words():
     root_node = Trie()
     root_node.insert('BEAR')
@@ -118,4 +127,57 @@ def test_insert_multiple_words():
 
     expected = ['BEAR', 'BELL', 'BID', 'BULL', 'BUY', 'SELL', 'STOCK', 'STOP']
     output = root_node.get_words(root_node)
+    assert output == expected
+
+def test_search_empty_trie():
+    root_node = Trie()
+
+    expected = False
+    output = root_node.search("Dog")
+    assert output == expected
+
+def test_search_blank_empty_trie():
+    root_node = Trie()
+
+    expected = False
+    output = root_node.search('')
+    assert output == expected
+
+def test_search_basic_with_multiple_words():
+    root_node = Trie()
+    root_node.insert('BEAR')
+    root_node.insert('BELL')
+    root_node.insert('BID')
+    root_node.insert('BULL')
+    root_node.insert('BUY')
+    root_node.insert('SELL')
+    root_node.insert('STOCK')
+    root_node.insert('STOP')
+
+    expected = True
+    output = root_node.search('BULL')
+    assert output == expected
+
+def test_search_match_with_different_case():
+    root_node = Trie()
+    root_node.insert("dimitar")
+
+    expected = False
+    output = root_node.search("DIMITAR")
+    assert output == expected
+
+def test_search_match_of_suffix():
+    root_node = Trie()
+    root_node.insert("TESTED")
+
+    expected = True
+    output = root_node.search("TEST")
+    assert output == expected
+
+def test_search_word_longer_than_match():
+    root_node = Trie()
+    root_node.insert("TEST")
+
+    expected = False
+    output = root_node.search("TESTED")
     assert output == expected

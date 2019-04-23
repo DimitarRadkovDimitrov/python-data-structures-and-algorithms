@@ -20,3 +20,13 @@ class Trie:
                 trie_to_insert = Trie(letter)
                 temp.children[letter] = trie_to_insert
             temp = temp.children[letter]
+
+    def search(self, string_to_search):
+        if string_to_search:
+            temp = self
+            for letter in string_to_search:
+                if not temp.children or letter not in temp.children:
+                    return False
+                temp = temp.children[letter]
+            return True
+        return False
