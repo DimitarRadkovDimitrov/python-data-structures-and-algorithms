@@ -3,6 +3,7 @@ from src.datastructures.linked_list import LinkedList, LinkedListNode
 def test_print_empty_list(capsys):
     linked_list = LinkedList()
     linked_list.print()
+
     expected = "NULL\n"
     output = capsys.readouterr().out
     assert output == expected
@@ -11,6 +12,7 @@ def test_print_list_with_one_element(capsys):
     linked_list_node = LinkedListNode(1)
     linked_list = LinkedList(linked_list_node)
     linked_list.print()
+
     expected = "1 -> NULL\n"
     output = capsys.readouterr().out
     assert output == expected
@@ -30,6 +32,7 @@ def test_print_list_with_multiple_elements(capsys):
 
 def test_find_in_empty_list():
     linked_list = LinkedList()
+    
     expected = False
     output = linked_list.find(1)
     assert output == expected
