@@ -58,3 +58,78 @@ def test_remove_node_with_edges():
     expected = {1: {2}, 2: {4}, 4: {1, 2}}
     output = graph.graph
     assert output == expected
+
+def test_add_edge_node_does_node_exist():
+    graph = Graph()
+    graph.add_edge(1, 2)
+
+    expected = {}
+    output = graph.graph
+    assert output == expected
+
+def test_add_edge_node_to_itself():
+    graph = Graph()
+    graph.graph["node_1"] = set()
+    graph.add_edge("node_1", "node_1")
+
+    expected = {"node_1": {"node_1"}}
+    output = graph.graph
+    assert output == expected
+
+def test_add_edge_node_to_multiple_nodes():
+    graph = Graph()
+    graph.graph[1] = set()
+    graph.graph[2] = set()
+    graph.graph[3] = set()
+    graph.add_edge(1, 2)
+    graph.add_edge(2, 2)
+    graph.add_edge(3, 2)
+    graph.add_edge(1, 3)
+
+    expected = {1: {2, 3}, 2: {1, 2, 3}, 3: {2, 1}}
+    output = graph.graph
+    assert output == expected
+
+def test_remove_edge_from_empty_graph():
+    graph = Graph()
+    graph.remove_edge("A", "B")
+
+    expected = {}
+    output = graph.graph
+    assert output == expected
+
+def test_remove_edge_one_not_in_graph():
+    graph = Graph()
+    graph.graph['A'] = set([1, 2, 3])
+    graph.remove_edge('A', 6)
+
+    expected = {'A': {1, 2, 3}}
+    output = graph.graph
+    assert output == expected
+
+def test_remove_edge_normal_case():
+    graph = Graph()
+    graph.graph[1] = set()
+    graph.graph[2] = set()
+    graph.graph[1].add(2)
+    graph.graph[1].add(3)
+    graph.graph[2].add(1)
+    graph.graph[2].add(3)
+    graph.remove_edge(2, 1)
+
+    expected = {1: {3}, 2: {3}}
+    output = graph.graph
+    assert output == expected
+
+def test_remove_one_directed_edge():
+    graph = Graph()
+    graph.graph[1] = set()
+    graph.graph[2] = set()
+    graph.graph[1].add(2)
+    graph.graph[1].add(3)
+    graph.graph[2].add(3)
+    graph.remove_edge(1, 2)
+
+    expected = {1: {3}, 2: {3}}
+    output = graph.graph
+    assert output == expected
