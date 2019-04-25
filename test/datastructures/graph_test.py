@@ -133,3 +133,113 @@ def test_remove_one_directed_edge():
     expected = {1: {3}, 2: {3}}
     output = graph.graph
     assert output == expected
+
+def test_depth_first_search_one_node_graph(capsys):
+    graph = Graph()
+    graph.graph['A'] = set()
+    graph.depth_first_search('A')
+
+    expected = "A "
+    output = capsys.readouterr().out
+    assert output == expected
+
+def test_depth_first_search_with_cycles(capsys):
+    graph = Graph()
+    graph.graph['A'] = set()
+    graph.graph['B'] = set()
+    graph.graph['C'] = set()
+    graph.graph['D'] = set()
+    graph.graph['E'] = set()
+    graph.add_edge('A', 'B')
+    graph.add_edge('A', 'C')
+    graph.add_edge('A', 'D')
+    graph.add_edge('A', 'E')
+    graph.add_edge('B', 'C')
+    graph.add_edge('C', 'D')
+    graph.add_edge('C', 'E')
+    graph.depth_first_search('A')
+
+    expected = "A B C D E "
+    output = capsys.readouterr().out
+    assert output == expected
+
+def test_depth_first_search_complex(capsys):
+    graph = Graph()
+    graph.graph['A'] = set()
+    graph.graph['B'] = set()
+    graph.graph['C'] = set()
+    graph.graph['D'] = set()
+    graph.graph['E'] = set()
+    graph.graph['F'] = set()
+    graph.graph['G'] = set()
+    graph.graph['H'] = set()
+    graph.add_edge('A', 'B')
+    graph.add_edge('A', 'C')
+    graph.add_edge('A', 'D')
+    graph.add_edge('B', 'E')
+    graph.add_edge('C', 'F')
+    graph.add_edge('C', 'G')
+    graph.add_edge('D', 'G')
+    graph.add_edge('E', 'H')
+    graph.add_edge('F', 'H')
+    graph.add_edge('G', 'H')
+    graph.depth_first_search('A')
+
+    expected = "A B E H F C G D "
+    output = capsys.readouterr().out
+    assert output == expected
+
+def test_breadth_first_search_one_node_graph(capsys):
+    graph = Graph()
+    graph.graph['A'] = set()
+    graph.breadth_first_search('A')
+
+    expected = "A "
+    output = capsys.readouterr().out
+    assert output == expected
+
+def test_breadth_first_search_with_cycles(capsys):
+    graph = Graph()
+    graph.graph['A'] = set()
+    graph.graph['B'] = set()
+    graph.graph['C'] = set()
+    graph.graph['D'] = set()
+    graph.graph['E'] = set()
+    graph.add_edge('A', 'B')
+    graph.add_edge('A', 'C')
+    graph.add_edge('A', 'D')
+    graph.add_edge('A', 'E')
+    graph.add_edge('B', 'C')
+    graph.add_edge('C', 'D')
+    graph.add_edge('C', 'E')
+    graph.breadth_first_search('A')
+
+    expected = "A B C D E "
+    output = capsys.readouterr().out
+    assert output == expected
+
+def test_breadth_first_search_complex(capsys):
+    graph = Graph()
+    graph.graph['A'] = set()
+    graph.graph['B'] = set()
+    graph.graph['C'] = set()
+    graph.graph['D'] = set()
+    graph.graph['E'] = set()
+    graph.graph['F'] = set()
+    graph.graph['G'] = set()
+    graph.graph['H'] = set()
+    graph.add_edge('A', 'B')
+    graph.add_edge('A', 'C')
+    graph.add_edge('A', 'D')
+    graph.add_edge('B', 'E')
+    graph.add_edge('C', 'F')
+    graph.add_edge('C', 'G')
+    graph.add_edge('D', 'G')
+    graph.add_edge('E', 'H')
+    graph.add_edge('F', 'H')
+    graph.add_edge('G', 'H')
+    graph.breadth_first_search('A')
+
+    expected = "A B C D E F G H "
+    output = capsys.readouterr().out
+    assert output == expected
