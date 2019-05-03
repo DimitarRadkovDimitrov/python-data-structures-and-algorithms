@@ -105,3 +105,38 @@ def test_delete_from_full_heap():
     output = heap.heap
     assert output == expected
     assert deleted_node == 9
+
+def test_heap_sort_empty_heap():
+    heap = Heap()
+
+    expected = []
+    output = heap.heap_sort()
+    assert output == expected
+
+def test_heap_sort_one_element_heap():
+    heap = Heap([9])
+
+    expected = [9]
+    output = heap.heap_sort()
+    assert output == expected
+
+def test_heap_sort_with_already_sorted():
+    heap = Heap([1, 3, 4, 7, 8, 9])
+    
+    expected = [1, 3, 4, 7, 8, 9]
+    output = heap.heap_sort()
+    assert output == expected
+
+def test_heap_sort_with_full_heap():
+    heap = Heap([9, 4, 8, 1, 3, 7])
+    
+    expected = [1, 3, 4, 7, 8, 9]
+    output = heap.heap_sort()
+    assert output == expected
+
+def test_heap_sort_with_heap_construction():
+    heap = Heap([1, 9, 7, 4, 3, 8])
+    
+    expected = [1, 3, 4, 7, 8, 9]
+    output = heap.heap_sort()
+    assert output == expected

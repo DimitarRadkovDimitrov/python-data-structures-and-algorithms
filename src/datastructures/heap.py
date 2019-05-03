@@ -9,7 +9,6 @@ class Heap:
         if len(self.heap) > 2:
             current_sub_heap_index = (len(self.heap) - 1) // 2
             while current_sub_heap_index > 0:
-                print(current_sub_heap_index)
                 self.down_heap(current_sub_heap_index)
                 current_sub_heap_index = current_sub_heap_index - 1
 
@@ -51,6 +50,13 @@ class Heap:
                 root_index = parent_index
             else:
                 break
+
+    def heap_sort(self):
+        sorted_list = []
+        while len(self.heap) > 1:
+            max_node = self.delete()
+            sorted_list.insert(0, max_node)
+        return sorted_list
 
     def delete(self):
         if len(self.heap) > 1:
