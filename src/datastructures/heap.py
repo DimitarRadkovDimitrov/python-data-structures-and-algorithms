@@ -36,3 +36,30 @@ class Heap:
         temp = self.heap[index_of_first_number]
         self.heap[index_of_first_number] = self.heap[index_of_second_number]
         self.heap[index_of_second_number] = temp
+
+    def insert(self, value_to_insert):
+        if value_to_insert:
+            self.heap.append(value_to_insert)
+            starting_index = len(self.heap) - 1
+            self.up_heap(starting_index)
+    
+    def up_heap(self, root_index):
+        while root_index > 1:
+            parent_index = root_index // 2
+            if self.heap[root_index] > self.heap[parent_index]:
+                self.swap(root_index, parent_index)
+                root_index = parent_index
+            else:
+                break
+
+    def delete(self):
+        if len(self.heap) > 1:
+            root_index = 1
+            temp = self.heap[root_index]
+            index_of_last_node = len(self.heap) - 1
+
+            self.swap(root_index, index_of_last_node)
+            del self.heap[index_of_last_node]
+            self.down_heap(root_index)
+
+            return temp
