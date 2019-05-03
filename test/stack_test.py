@@ -1,4 +1,4 @@
-from src.datastructures.stack import Stack
+from src.stack import Stack
 
 def test_print_empty_stack(capsys):
     stack = Stack()

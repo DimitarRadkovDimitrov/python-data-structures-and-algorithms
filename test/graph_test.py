@@ -1,4 +1,4 @@
-from src.datastructures.graph import Graph
+from src.graph import Graph
 
 def test_add_node_to_empty_graph():
     graph = Graph()

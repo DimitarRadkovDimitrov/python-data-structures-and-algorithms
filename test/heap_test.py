@@ -1,4 +1,4 @@
-from src.datastructures.heap import Heap
+from src.heap import Heap
 
 def test_initialize_empty_heap():
     heap = Heap()

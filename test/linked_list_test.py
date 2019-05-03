@@ -1,4 +1,4 @@
-from src.datastructures.linked_list import LinkedList, LinkedListNode
+from src.linked_list import LinkedList, LinkedListNode
 
 def test_print_empty_list(capsys):
     linked_list = LinkedList()

@@ -1,4 +1,4 @@
-from src.datastructures.queue import Queue
+from src.queue import Queue
 
 def test_print_empty_queue(capsys):
     queue = Queue()

@@ -1,4 +1,4 @@
-from src.datastructures.trie import Trie
+from src.trie import Trie
 
 def test_get_words_one_word():
     root_node = Trie()

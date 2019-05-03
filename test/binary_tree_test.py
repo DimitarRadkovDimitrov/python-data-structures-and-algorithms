@@ -1,4 +1,4 @@
-from src.datastructures.binary_tree import BinaryTree
+from src.binary_tree import BinaryTree
 
 def test_in_order_print_one_node(capsys):
     root_node = BinaryTree(1)
